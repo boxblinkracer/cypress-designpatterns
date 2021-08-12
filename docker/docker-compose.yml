@@ -1,0 +1,30 @@
+version: "3.0"
+
+
+services:
+
+  proxy:
+      container_name: mollie__proxy
+      image: dockware/proxy:latest
+      ports:
+        - "80:80"
+        - "443:443"
+      depends_on:
+        - shop
+      volumes:
+        - "./proxy/shop.conf:/etc/nginx/conf.d/shop.conf"
+      environment:
+        - ACCESS_LOG=0
+  # -----------------------------------------------------------------------
+  shop:
+      image: dockware/play:6.4.3.0
+      container_name: shop
+      ports:
+        - "22:22"
+        - "3306:3306"
+      environment:
+        - XDEBUG_ENABLED=0
+
+volumes:
+  plugins_folder:
+      driver: local
