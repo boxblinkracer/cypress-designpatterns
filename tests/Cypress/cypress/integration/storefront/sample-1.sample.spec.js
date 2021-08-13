@@ -4,6 +4,5 @@ it.only('Sample Test', () => {
 
     cy.visit('/account');
 
-    cy.get('#personalFirstName').clear().type('Christian');
-
+    
 })
