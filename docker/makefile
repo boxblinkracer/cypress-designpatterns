@@ -10,10 +10,9 @@ help:
 
 # ---------------------------------------------------------------------------------------------
 
-
 run: ## Runs the Shopware project
 	# ---------------------------------------------------------------------------
-	docker exec -i shop mysql -uroot -proot shopware < ./prepare-shop.sql
-	docker exec -i shop bash -c "php bin/console cache:clear"
+	#docker exec -i shop mysql -uroot -proot shopware < ./prepare-shop.sql
+	#docker exec -i shop bash -c "php bin/console cache:clear"
 	# ---------------------------------------------------------------------------
-	@open https://scd.dasistweb.com
+	#@open https://local.cypress.dev

@@ -1,1 +1,1 @@
-UPDATE sales_channel_domain SET url='https://scd.dasistweb.com' WHERE url NOT LIKE 'default.%';
+UPDATE sales_channel_domain SET url='https://local.cypress.dev' WHERE url NOT LIKE 'default.%';
