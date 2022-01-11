@@ -1,9 +1,7 @@
-import LoginPage from "../../support/pageobjects/LoginPage";
 
 it('Full Checkout: Paid in advance', () => {
 
     cy.viewport(1920, 1080);
-
 
     // -----------------------------------------------------------------------------------
     // REGISTER
@@ -13,17 +11,17 @@ it('Full Checkout: Paid in advance', () => {
     cy.get('#personalSalutation').select('Mr.');
     cy.get('#personalFirstName').clear().type('Christian');
     cy.get('#personalLastName').clear().type('Dangl');
-    cy.get('#personalMail').clear().type("scd@localhost.de");
-    cy.get('#personalPassword').clear().type("SCD123SCD123");
-    cy.get('#billingAddressAddressStreet').clear().type('SCD');
-    cy.get('#billingAddressAddressZipcode').clear().type('SCD');
-    cy.get('#billingAddressAddressCity').clear().type('SCD');
+    cy.get('#personalMail').clear().type("cypress@germany.de");
+    cy.get('#personalPassword').clear().type("DE123DE123");
+    cy.get('#billingAddressAddressStreet').clear().type('Cypress');
+    cy.get('#billingAddressAddressZipcode').clear().type('DE');
+    cy.get('#billingAddressAddressCity').clear().type('Germany Town');
     cy.get('#billingAddressAddressCountry').select('Germany');
     cy.get('.register-submit > .btn').click();
 
-
     // -----------------------------------------------------------------------------------
     // CLEAR SESSION
+
     cy.clearCookies();
     cy.visit('/', {
         onBeforeLoad: (win) => {
@@ -36,14 +34,15 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.visit('/account');
 
-    cy.get('#loginMail').clear().type('scd@localhost.de');
-    cy.get('#loginPassword').clear().type('SCD123SCD123');
+    cy.get('#loginMail').clear().type('cypress@germany.de');
+    cy.get('#loginPassword').clear().type('DE123DE123');
     cy.get('.login-submit > .btn').click();
+
 
     // -----------------------------------------------------------------------------------
     // PRODUCT
 
-    cy.get('.home-link > .main-navigation-link-text').click();
+    cy.get('[href="http://localhost/Clothing/"] > .main-navigation-link-text > span').click();
     cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
 
     cy.get('.col-4 > .custom-select').select("2");
