@@ -1,19 +1,11 @@
-import RegisterAction from "../../support/actions/storefront/account/RegisterAction";
-
-
-const registerAction = new RegisterAction();
-
-
-before(function () {
-    cy.viewport(1920, 1080);
-})
-
 
 it('Full Checkout: Paid in advance', () => {
 
+    cy.viewport(1920, 1080);
+
     // -----------------------------------------------------------------------------------
     // REGISTER
-    // TODO: extract this
+
     cy.visit('/account');
 
     cy.get('#personalSalutation').select('Mr.');
@@ -46,10 +38,11 @@ it('Full Checkout: Paid in advance', () => {
     cy.get('#loginPassword').clear().type('DE123DE123');
     cy.get('.login-submit > .btn').click();
 
+
     // -----------------------------------------------------------------------------------
     // PRODUCT
 
-    cy.get('.home-link > .main-navigation-link-text').click();
+    cy.get('[href="http://localhost/Clothing/"] > .main-navigation-link-text > span').click();
     cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
 
     cy.get('.col-4 > .custom-select').select("2");
