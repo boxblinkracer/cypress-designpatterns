@@ -1,15 +1,18 @@
-import LoginPage from "../../../support/pageobjects/LoginPage";
+import LoginAction from "../../../support/actions/storefront/account/LoginAction";
 
-const pageLogin = new LoginPage();
+const loginAction = new LoginAction();
+
+
+before(function () {
+    cy.viewport(1920, 1080);
+})
 
 
 it('Full Checkout: Paid in advance', () => {
 
-    cy.viewport(1920, 1080);
-
     // -----------------------------------------------------------------------------------
     // REGISTER
-
+    // TODO: extract this
     cy.visit('/account');
 
     cy.get('#personalSalutation').select('Mr.');
@@ -33,26 +36,18 @@ it('Full Checkout: Paid in advance', () => {
         }
     });
 
-    
     // -----------------------------------------------------------------------------------
     // LOGIN
 
-
     cy.visit('/account');
 
-    // version A)
-    // pageLogin.getEmail().clear().type('cypress@germany.de');
-    // pageLogin.getPassword().clear().type('DE123DE123');
-    // cy.get('.login-submit > .btn').click();
-
-    // version B)
-    // pageLogin.doLogin('cypress@germany.de', 'DE123DE123');
+    loginAction.doLogin('cypress@germany.de', 'DE123DE123');
 
 
     // -----------------------------------------------------------------------------------
     // PRODUCT
 
-    cy.get('[href="http://localhost/Clothing/"] > .main-navigation-link-text > span').click();
+    cy.get('.home-link > .main-navigation-link-text').click();
     cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
 
     cy.get('.col-4 > .custom-select').select("2");

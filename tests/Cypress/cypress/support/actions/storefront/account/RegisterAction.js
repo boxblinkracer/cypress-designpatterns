@@ -1,6 +1,11 @@
 export default class RegisterAction {
 
-    doRegister() {
+    /**
+     *
+     * @param email
+     * @param password
+     */
+    doRegister(email, password) {
 
 
     }
