@@ -1,0 +1,62 @@
+name: CI Pipeline
+
+
+jobs:
+
+  e2e:
+    name: E2E Tests | Shopware ${{ matrix.shopware }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - shopware: '6.4.7.0'
+            php: '8.0'
+          - shopware: '6.4.6.0'
+            php: '7.4'
+
+    steps:
+
+      - name: Clone Code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+
+      - name: Install Dependencies
+        run: make install -B
+
+      - name: Start Docker
+        run: |
+          docker run --rm -p 80:80 --name shop -d dockware/dev:${{ matrix.shopware }}
+          sleep 30
+          docker logs shop
+
+      - name: Install Cypress
+        run: cd tests/Cypress && make install -B
+
+      - name: Start Cypress
+        run: cd tests/Cypress && make run shopware=$SW_VERSION url=http://localhost
+        env:
+          SW_VERSION: ${{ matrix.shopware }}
+
+      - name: Download Logs
+        if: ${{ always() }}
+        run: |
+          mkdir -p $(pwd)/tests/Cypress/cypress/logs/shopware
+          mkdir -p $(pwd)/tests/Cypress/cypress/logs/apache
+          docker cp shop:/var/www/html/var/log/. $(pwd)/tests/Cypress/cypress/logs/shopware
+          docker cp shop:/var/log/php/. $(pwd)/tests/Cypress/cypress/logs/apache
+
+      - name: Store Cypress Results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress_results_sw_v${{ matrix.shopware }}
+          retention-days: 1
+          path: |
+            tests/Cypress/cypress/logs
+            tests/Cypress/cypress/videos
+            tests/Cypress/cypress/screenshots
