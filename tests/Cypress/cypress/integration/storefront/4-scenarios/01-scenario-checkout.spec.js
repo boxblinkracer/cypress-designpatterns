@@ -1,7 +1,3 @@
-before(function () {
-    cy.viewport(1920, 1080);
-})
-
 
 it('Full Checkout: Paid in advance', () => {
 

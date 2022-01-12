@@ -3,11 +3,6 @@ import Shopware from "../../../support/services/Shopware";
 const versionChecker = new Shopware();
 
 
-before(function () {
-    cy.viewport(1920, 1080);
-})
-
-
 it('Full Checkout: Register', () => {
 
     cy.visit('/account');

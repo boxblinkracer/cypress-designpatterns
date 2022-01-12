@@ -4,11 +4,6 @@ import DummyBasketScenario from "../../../support/scenarios/DummyBasketScenario"
 const scenarioBasket = new DummyBasketScenario(5);
 
 
-before(function () {
-    cy.viewport(1920, 1080);
-})
-
-
 it('Full Checkout: Paid in advance', () => {
 
     scenarioBasket.execute();

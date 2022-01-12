@@ -5,8 +5,6 @@ const pageLogin = new LoginPage();
 
 it('Full Checkout: Paid in advance', () => {
 
-    cy.viewport(1920, 1080);
-
     // -----------------------------------------------------------------------------------
     // REGISTER
 
