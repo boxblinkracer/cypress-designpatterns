@@ -38,9 +38,7 @@ jobs:
         run: cd tests/Cypress && make install -B
 
       - name: Start Cypress
-        run: cd tests/Cypress && make run shopware=$SW_VERSION url=http://localhost
-        env:
-          SW_VERSION: ${{ matrix.shopware }}
+        run: cd tests/Cypress && make run shopware=${{ matrix.shopware }} url=http://localhost
 
       - name: Download Logs
         if: ${{ always() }}
