@@ -1,22 +1,6 @@
-import TopMenuAction from "Actions/storefront/navigation/TopMenuAction";
-import ListingAction from "Actions/storefront/products/ListingAction";
-import PDPAction from "Actions/storefront/products/PDPAction";
-import CheckoutAction from "Actions/storefront/checkout/CheckoutAction";
-import LoginAction from "Actions/storefront/account/LoginAction";
-import Session from "Actions/utils/Session";
-import ShopConfigurationAction from "Actions/admin/ShopConfigurationAction";
-import RegisterAction from "Actions/storefront/account/RegisterAction";
+import LoginAction from "../actions/storefront/account/LoginAction";
 
-
-const topMenu = new TopMenuAction();
-const listing = new ListingAction();
-const pdp = new PDPAction();
-const checkout = new CheckoutAction();
-const login = new LoginAction();
-
-const session = new Session();
-
-const register = new RegisterAction();
+const loginAction = new LoginAction();
 
 
 export default class DummyBasketScenario {
@@ -34,24 +18,56 @@ export default class DummyBasketScenario {
      */
     execute() {
 
+        // ATTENTION
+        // this could usually include only your actions next
+        // to each other.
+        // the code here is just to have it working without many
+        // actions added in this simple demo project.
+
+
+        
         const user_email = "dev@localhost.de";
-        const user_pwd = "SCD123SCD123";
+        const user_pwd = "DE123DE123";
 
-        cy.visit('/');
+        cy.visit('/account');
 
-        register.doRegister(user_email, user_pwd);
+        cy.get('#personalSalutation').select('Mr.');
+        cy.get('#personalFirstName').clear().type('Christian');
+        cy.get('#personalLastName').clear().type('Dangl');
+        cy.get('#personalMail').clear().type(user_email);
+        cy.get('#personalPassword').clear().type(user_pwd);
+        cy.get('#billingAddressAddressStreet').clear().type('Cypress');
+        cy.get('#billingAddressAddressZipcode').clear().type('DE');
+        cy.get('#billingAddressAddressCity').clear().type('Germany Town');
+        cy.get('#billingAddressAddressCountry').select('Germany');
+        cy.get('.register-submit > .btn').click();
 
-        session.resetBrowserSession();
+        // -----------------------------------------------------------------------------------
+        // CLEAR SESSION
 
-        login.doLogin(user_email, user_pwd);
+        cy.clearCookies();
+        cy.visit('/', {
+            onBeforeLoad: (win) => {
+                win.sessionStorage.clear()
+            }
+        });
 
-        topMenu.clickOnHome();
+        // -----------------------------------------------------------------------------------
+        // LOGIN
 
-        listing.clickOnFirstProduct();
+        cy.visit('/account');
+        loginAction.doLogin('cypress@germany.de', 'DE123DE123');
 
-        pdp.addToCart(this.quantity);
 
-        checkout.goToCheckoutInOffCanvas();
+        // -----------------------------------------------------------------------------------
+        // PRODUCT
+
+        cy.get('[href="http://localhost/Clothing/"] > .main-navigation-link-text > span').click();
+        cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
+
+        cy.get('.col-4 > .custom-select').select(this.quantity);
+        cy.get('.buy-widget-container > .col-8 > .btn').click();
+
     }
 
 }
