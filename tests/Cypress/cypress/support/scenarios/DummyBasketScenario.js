@@ -25,7 +25,7 @@ export default class DummyBasketScenario {
         // actions added in this simple demo project.
 
 
-        
+
         const user_email = "dev@localhost.de";
         const user_pwd = "DE123DE123";
 
