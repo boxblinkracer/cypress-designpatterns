@@ -25,7 +25,7 @@ it('Full Checkout: Paid in advance', () => {
 
     menu.openFirstCategory();
     listing.clickOnFirstProduct();
-    pdp.addToCart();
+    pdp.addToCart(2);
 
     checkout.openCart();
     checkout.switchPaymentMethod('Paid in advance');
