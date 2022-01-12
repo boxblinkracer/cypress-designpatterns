@@ -31,9 +31,11 @@ it('Full Checkout: Paid in advance', () => {
     // LOGIN
 
     cy.visit('/account');
+    
+    cy.get('#loginMail').clear().type('cypress@germany.de');
+    cy.get('#loginPassword').clear().type('DE123DE123');
+    cy.get('.login-submit > .btn').click();
 
-    loginPage.doLogin('cypress@germany.de', 'DE123DE123');
-    cy.pause();
 
     // -----------------------------------------------------------------------------------
     // PRODUCT
