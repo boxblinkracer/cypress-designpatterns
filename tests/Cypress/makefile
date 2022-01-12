@@ -9,7 +9,7 @@ help:
 
 install: ## Installs all dependencies
 	npm install cypress --save-dev --save .
-	npm install webpack --save-dev --save .
+	npm install webpack@4.18.1 --save-dev --save .
 	npm install @cypress/webpack-preprocessor --save-dev --save .
 	npm install @cucumber/tag-expressions --save-dev --save .
 
