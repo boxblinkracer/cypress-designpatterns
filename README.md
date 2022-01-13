@@ -1,5 +1,5 @@
 <p align="center">
-  [<img src="https://raw.githubusercontent.com/boxblinkracer/cypress-designpatterns/master/assets/cypress.jpg?token=GHSAT0AAAAAABJ2YDBBI6GNSHYEUCTQ2SN4YO73HQA">]()
+  <img src="https://raw.githubusercontent.com/boxblinkracer/cypress-designpatterns/master/assets/cypress.jpg?token=GHSAT0AAAAAABJ2YDBBI6GNSHYEUCTQ2SN4YO73HQA">
 </p>
 <h1 align="center">Cypress Design Patterns DEMO</h1>
 
