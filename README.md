@@ -40,7 +40,7 @@ make install
 
 
 Now you have 2 options to run Cypress. Either using the UI, or just within the terminal.
-Please note, that the terminal version, requires a Shopware version to be set. Just use the one, we are using in the `docker-compose.yml` file.
+Please note, that the terminal version, requires a Shopware version to be set. Just set the one that is used in the `docker-compose.yml` file.
 
 ```ruby 
 make open-ui url=http://localhost
