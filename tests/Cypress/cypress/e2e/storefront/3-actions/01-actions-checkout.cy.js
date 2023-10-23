@@ -1,3 +1,7 @@
+import LoginAction from "../../../support/actions/storefront/account/LoginAction";
+
+const login = new LoginAction();
+
 
 it('Full Checkout: Paid in advance', () => {
 
@@ -32,9 +36,9 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.visit('/account');
 
-    cy.get('#loginMail').clear().type('cypress@germany.de');
-    cy.get('#loginPassword').clear().type('DE123DE123');
-    cy.get('.login-submit > .btn').click();
+    login.doLogin('cypress@germany.de', 'DE123DE123');
+
+
 
 
     // -----------------------------------------------------------------------------------

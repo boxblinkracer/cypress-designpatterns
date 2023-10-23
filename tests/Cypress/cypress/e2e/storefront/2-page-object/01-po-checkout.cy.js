@@ -1,4 +1,6 @@
+import LoginPage from "../../../support/pageobjects/LoginPage";
 
+const pageLogin = new LoginPage();
 
 it('Full Checkout: Paid in advance', () => {
 
@@ -33,9 +35,9 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.visit('/account');
 
-    cy.get('#loginMail').clear().type('cypress@germany.de');
-    cy.get('#loginPassword').clear().type('DE123DE123');
-    cy.get('.login-submit > .btn').click();
+    pageLogin.doLogin('cypress@germany.de', 'DE123DE123');
+
+    cy.pause();
 
 
     // -----------------------------------------------------------------------------------
@@ -46,6 +48,7 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.get('.col-4 > .custom-select').select("2");
     cy.get('.buy-widget-container > .col-8 > .btn').click();
+
 
     // -----------------------------------------------------------------------------------
     // CHECKOUT
@@ -62,4 +65,5 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.url().should('include', '/checkout/finish');
     cy.contains('Thank you for your order');
+
 })

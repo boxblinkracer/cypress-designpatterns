@@ -8,10 +8,7 @@ help:
 # ---------------------------------------------------------------------------------------------
 
 install: ## Installs all dependencies
-	npm install cypress --save-dev --save .
-	npm install webpack@4.18.1 --save-dev --save .
-	npm install @cypress/webpack-preprocessor --save-dev --save .
-	npm install @cucumber/tag-expressions --save-dev --save .
+	npm install
 
 clean: ## Cleans all dependencies
 	rm -rf node_modules
@@ -24,9 +21,9 @@ ifndef url
 	@exit 1
 endif
 ifndef shopware
-	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=6.4.7.0 ./node_modules/.bin/cypress open --env conf=dev
+	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=6.5.6.0 ./node_modules/.bin/cypress open
 else
-	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress open --env conf=dev
+	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress open
 endif
 
 # ---------------------------------------------------------------------------------------------
@@ -40,4 +37,4 @@ ifndef shopware
 	$(warning Please provide the Shopware Version as argument to Start Cypress!)
 	@exit 1
 endif
-	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress run --env conf=dev --headless --spec 'cypress/integration/**/*.spec.js'
+	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress run --headless --spec 'cypress/integration/**/*.spec.js'

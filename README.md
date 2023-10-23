@@ -45,7 +45,7 @@ Please note, that the terminal version, requires a Shopware version to be set. J
 ```ruby 
 make open-ui url=http://localhost
 
-make run shopware=6.4.7.0 url=http://localhost 
+make run shopware=6.5.6.0 url=http://localhost 
 ```
 
 
