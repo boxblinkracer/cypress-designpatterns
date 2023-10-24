@@ -12,7 +12,7 @@ it('Full Checkout: Paid in advance', () => {
     cy.get('#personalSalutation').select('Mr.');
     cy.get('#personalFirstName').clear().type('Christian');
     cy.get('#personalLastName').clear().type('Dangl');
-    cy.get('#personalMail').clear().type("cypress@germany.de");
+    cy.get('#personalMail').clear().type("demo@cypress.de");
     cy.get('#personalPassword').clear().type("DE123DE123");
     cy.get('#billingAddressAddressStreet').clear().type('Cypress');
     cy.get('#billingAddressAddressZipcode').clear().type('DE');
@@ -35,9 +35,10 @@ it('Full Checkout: Paid in advance', () => {
 
     cy.visit('/account');
 
-    pageLogin.doLogin('cypress@germany.de', 'DE123DE123');
+    cy.get('#loginMail').clear().type("demo@cypress.de");
+    cy.get('#loginPassword').clear().type("DE123DE123");
 
-    cy.pause();
+    cy.get('.login-submit > .btn').click();
 
 
     // -----------------------------------------------------------------------------------
