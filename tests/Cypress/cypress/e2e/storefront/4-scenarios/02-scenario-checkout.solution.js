@@ -14,8 +14,8 @@ it('Full Checkout: Paid in advance', () => {
     cy.get('.home-link > .main-navigation-link-text').click();
     cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
 
-    cy.get('.col-4 > .custom-select').select("2");
-    cy.get('.buy-widget-container > .col-8 > .btn').click();
+    cy.get('.btn-plus').click();
+    cy.get('.btn-buy').first().click();
 
     // -----------------------------------------------------------------------------------
     // CHECKOUT

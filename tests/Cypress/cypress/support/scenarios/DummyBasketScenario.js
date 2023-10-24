@@ -25,7 +25,6 @@ export default class DummyBasketScenario {
         // actions added in this simple demo project.
 
 
-
         const user_email = "dev@localhost.de";
         const user_pwd = "DE123DE123";
 
@@ -65,9 +64,11 @@ export default class DummyBasketScenario {
         cy.get('[href="http://localhost/Clothing/"] > .main-navigation-link-text > span').click();
         cy.get(':nth-child(1) > .card > .card-body > .product-info > .product-name').click();
 
-        cy.get('.col-4 > .custom-select').select(this.quantity);
-        cy.get('.buy-widget-container > .col-8 > .btn').click();
+        for (let i = 0; i < this.quantity; i++) {
+            cy.get('.btn-plus').click();
+        }
 
+        cy.get('.btn-buy').first().click();
     }
 
 }

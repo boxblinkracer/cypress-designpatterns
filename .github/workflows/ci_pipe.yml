@@ -18,10 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - shopware: '6.4.7.0'
+          - shopware: '6.5.6.0'
+            php: '8.1'
+          - shopware: '6.4.20.0'
             php: '8.0'
-          - shopware: '6.4.6.0'
-            php: '7.4'
 
     steps:
 

@@ -58,7 +58,7 @@ Every test runs and passes out of the box, but might not be completely the one y
 This is, because the talk for this sample project is an interactive one, where I show you how to transform those tests into tests with design patterns.
 
 Still, the solutions are also existing. 
-They are not executed, because I've skipped the `.spec` in their file names.
+They are not executed, because I've skipped the `.cy` in their file names.
 The reason is, they might not run 100%, because they rely on actions like "login" that is usually developed during the talk.
 So the default "login" function of this repository is empty, and thus, doesn't do anything ;)
 

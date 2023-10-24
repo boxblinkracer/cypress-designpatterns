@@ -21,7 +21,8 @@ ifndef url
 	@exit 1
 endif
 ifndef shopware
-	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=6.5.6.0 ./node_modules/.bin/cypress open
+	$(warning Please provide the Shopware version as argument to start Cypress!)
+	@exit 1
 else
 	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress open
 endif
@@ -34,7 +35,7 @@ ifndef url
 	@exit 1
 endif
 ifndef shopware
-	$(warning Please provide the Shopware Version as argument to Start Cypress!)
+	$(warning Please provide the Shopware Version as argument to start Cypress!)
 	@exit 1
 endif
-	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress run --headless --spec 'cypress/integration/**/*.spec.js'
+	CYPRESS_BASE_URL=$(url) CYPRESS_SHOPWARE=$(shopware) ./node_modules/.bin/cypress run --headless --spec 'cypress/e2e/**/*.cy.js'
